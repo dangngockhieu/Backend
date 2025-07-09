@@ -1,9 +1,12 @@
-const path = require('path')
+'use strict';
+
 const express = require('express');
-const configViewEngine = (app) => {
-    app.set('views', path.join('./src', 'views'));
-    app.set('view engine', 'ejs');
-    // config static files
-    app.use(express.static(path.join('./src', 'public')));
+require('dotenv').config();
+
+function configViewEngine(app) {
+  app.use(express.static('./src/public'));
+  app.set('view engine', 'ejs');
+  app.set('views', './src/views');
 }
-module.exports = configViewEngine;
+
+module.exports = { default: configViewEngine };
